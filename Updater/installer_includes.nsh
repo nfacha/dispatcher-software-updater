@@ -1,0 +1,2 @@
+!define PRODUCT_VERSION "v2013.06.10"
+!define PRODUCT_EDITION "Corp"

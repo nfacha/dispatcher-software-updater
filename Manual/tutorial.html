@@ -1,0 +1,84 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>Tutorial</big></big>
+<br><br>
+Here's how to deploy an Updater with Dispatcher, in detail. For a simple overview, see the website's <a href="../../dispatcher_stepbystep.html">quick tutorial</a>, or the <a href="http://www.puchisoft.com/Dispatcher/tutorial.htm">Video Tutorial</a>.<br>
+<br>
+This tutorial will walk you through creating an Updater in Sync Mode. The Updater will be run before your software, launching your software after checking for and (if available) applying updates. If you wish to have the Updater only show itself when updates are available, see the "When to Run" section of the Manual.
+<br><br>
+<big><b>Install Dispatcher</b></big><br>
+If you don't have it yet, <a href="../../dispatcher_editions.html">get it</a>. After it's installed, run it.<br>
+<br><br>
+<center><big><big>Initial Software Release</big></big></center><br>
+<big><b>New Project</big></b><br>
+Start a new project by either clicking the New Project icon, or selecting File->New Project.<br><br>
+1) Enter a Project Name. A good one to use is the name of your software.<br>
+<br>
+2) Pick an Update Mode. We'll use Sync Mode in this tutorial, but you could use Patch Mode just as easily. <a href="patchvssync.html">See Patch vs Sync Mode.</a><br>
+<br>
+3) Pick an Update Mirror URL. This will be the first URL the Updater will try to get update data from. Choose a URL that anyone can download from (supported: HTTP, HTTPS, FTP). You will place update data here later, so ensure you have a way of uploading files to this location. If needed, <a href="../../forum/viewtopicc8cf.html?f=29&amp;t=570">check out this list of supported Free Website Hosts that work with Dispatcher</a>.<br>
+<br>
+4) [Optional] If you have FTP access, Dispatcher can upload your update data for you. So type in the FTP URL that corresponds to the public Mirror URL. So for "http://example.com/Updates/MySoftware", the FTP URL might be "ftp://username:password@example.com/WWWRoot/Updates/MySoftware".
+<br><br>
+<big><b>Add a Version</big></b><br>
+Put every part of the software you are releasing under a single folder. The contents of this folder will probably end up on the user's PC at C:\Program Files\MySoftware\. Everything in this folder will be updated by the Updater, as needed.<br>
+<br>
+1) Give this release a "Version Name". This can be anything. Example: v1.2rc<br>
+<br>
+2) Specify the "Folder" where your ready-to-be-released software is located.<br>
+
+<br><br>
+<big><b>Configure Run/Close</big></b><br>
+Click the Run/Close tab at the top.<br><br>
+Since we want the Updater to run our software after it's done with update checking/applying, check "Run My Software" "After Successful Updates", "After No Updates Found", and (if desired) "After Any Errors". The last option means that the Updater would still run your program, even if your webserver could not be reached to check for updates.<br>
+<br>
+So the Updater knows what to run, you must specify the relative location of your exe in "Relative Program Path", under "Run My Software". So if your exe is located at Program\Software.exe relative to your newest version's folder (which you just set in 'Add a Version' above), enter: Program\Software.exe<br>
+<br>
+For the Updater to be able to update your software, your software may not be running. To ensure this is the case, you can tell the Updater to close your software. So under "Close My Software", enter your program's EXE Name. So if your program's named "MySoftware.exe", enter that, regardless of its relative path.<br>
+
+<br><br>
+<big><b>Release</big></b><br>
+Click the Release tab at the top.<br><br>
+It's time to initially release your software. Dispatcher is about to take your newest version, generate an Updater for it, and combine all that into an Installer.<br>
+<br>
+Since, in this case, we want the Updater to be run first and then have it run your actual software, click "Configure Installer". Enter Updater.exe as the "Relative Program Path" in the Installer Configuration. This tells the installer to make the Start Menu shortcut to your software actually point to the Updater. The Updater already knows to run your software program, because you defined its Relative Path in the Run/Close tab under "Run My Software". Just click "OK".<br>
+<br>
+Click "Release in Full and Release Update Data".<br>
+The Installer will be compiled to "My Documents\Dispatcher Projects\MySoftware\MySoftware_Setup.exe" by default.<br>
+<br>
+Note that "Full Release Folder" and "Update Data Folder" are just temporary storage folders on your local computer. If you are not using Dispatcher to Auto-Upload your Update Data Folder to all Update Mirrors via FTP, you must do this manually after every Release.<br>
+<br><br>
+<big><b>Done!</big></b><br>
+Now you can distribute the Installer to your users.<br>
+<br><br>
+
+
+<center><big><big>Software Update Releases</big></big></center><br>
+
+So you've released the initial version of your software previously, and you've since improved it, and want to release the new version to your users.<br>
+<br><br>
+<big><b>Open Project</big></b><br>
+Open the Dispatcher project from before.<br>
+
+<br><br>
+<big><b>Add Version</big></b><br>
+Once again, you must put all your software's files into one folder, which will end up on the user's PC. If you used Patch Mode, this must be a new folder, since patches will be made by comparing the old versions' folders with the folder of the new version. However, in Sync Mode, you may just use the same folder for all your software releases.<br>
+<br>
+1) Give this release a "Version Name". This can be anything. Example: v1.3<br>
+2) Specify the "Folder" where your ready-to-be-released software is located.<br>
+<br><br>
+<big><b>Release</big></b><br>
+Click the Release tab at the top.<br>
+<br>
+If you just want your Updater to update your users to this new version, click "Release Update Data Only".<br>
+<br>
+If you also want to a release a new Installer, click "Release in Full and Release Update Data".<br>
+<br>
+If you did not set Dispatcher up to Auto-Upload your Update Data to all your Update Mirrors, you must now manually upload the content of the Update Data Folder to all Update Mirrors.<br>
+
+<br><br>
+<big><b>Done!</big></b><br>
+Your users will now be updated to your new version when the Updater checks for an update.<br>
+</span>
+</body>

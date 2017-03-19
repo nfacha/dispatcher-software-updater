@@ -1,0 +1,26 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>Versions</big></big>
+<br><br>
+
+Every time you want to release a version of your software, you should go through Dispatcher.<br>
+<br>
+The Versions tab of Dispatcher looks different, depending on if you are in Patch Mode or in Sync Mode.<br>
+<br><br>
+<b><big>Sync Mode</big></b><br>
+In Sync Mode, there is only one version: the Latest Version. There is no need to worry about what you've released previously. Just enter the name and folder of the version you want to release now.<br>
+<br><br>
+<b><big>Patch Mode</big></b><br>
+In Patch Mode, there is a list of all versions that you have released. See <a href="patchvssync.html" TARGET=CONTENT>Patch vs. Sync Mode</a>. All versions have a Status.<br>
+<br>
+The status of a version reflects how that version will be updated to your latest version. The default status of a version is Active. Active versions will be updated to the latest version using a direct patch. This is the most bandwidth efficient way to update. The downside is that creating patches can take time, and requires that you keep the old version's folders around without alteration.<br>
+<br>
+You may choose to Retire versions by changing their status to either "Retired (Patch)" or "Retired (Sync)". Retired versions do not need to be kept on your hard drive, since no more patches will be made from them. With Retired (Patch), already existing patches will be used in combination with new patches to update those versions to your latest.<br> 
+<br>
+Let's say you released a patch updating v1 to v2 in the past, and have since added a v3 and set v1 to "Retired (Patch)". A patch will be created from the Active v2 to v3, as usual. Dispatcher will figure out a route to take to the latest version from Retired versions. In this case, the previously created patch (v1-v2) will be used in combination with the new patch (v2-v3) to arrive at v3. Since no new patches need to be generated for v1, you could now safely delete that version's folder.<br>
+<br>
+The "Retired (Sync)" Status comes in handy when your chain of patches is getting rather long. This Status causes that version to be updated using file syncing, just like Sync Mode always does.<br>
+<br>
+For an example of why you might want this, consider this scenario: say your main program's exe is always 1MB, and you always change 0.1MB per new version. If you keep all your versions Active, then your users always just have to download a ~0.1MB patch (good). But let's say you've gotten into the habit of using "Retire (Patch)" status as soon as possible. After 20 patches, you've created a chain of 20 * ~0.1MB patches: that's ~2MB total of data to download! At this point, it starts to make sense to set your older versions to "Retire (Sync)" so that only the 1MB main program exe is downloaded. Of course, you could just set all versions to Active again to only make users download ~0.1MB of patch data.<br>
+</span></body>

@@ -1,0 +1,53 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>Update Mirrors</big></big>
+<br><br>
+
+Update Mirrors are the webserver URLs that the Updater uses to determine if there is an update, and to download it. All Update Mirrors are to contain the Update Data that is generated into the <a href="updatefolder.html">Update Data Folder</a>.<br>
+<br>
+Update Mirrors can be URLs of these protocols: HTTP, HTTPS, and FTP.<br>
+<br>
+So just get access to any webserver that allows people to download files off it directly, and you are all set to release updates via the Updater. Note that free webhosts may limit your bandwidth, as well as not allowing certain file types.<br>
+<br>
+You can add as many Update Mirrors as you desire. Update Mirrors are attempted from the top down. The first online mirror will be used to update.<br>
+<br>
+The way this works is such:<br>
+1) You tell Dispatcher about your software versions <br>
+2) Dispatcher generates Update Data into your local <a href="updatefolder.html">Update Data Folder</a> <br>
+3) You upload the <a href="updatefolder.html">Update Data Folder</a> to your Update Mirrors <br>
+4) The Updater checks the Update Mirrors, and uses the data to update your users<br>
+<br>
+Rather than doing so yourself, you can configure Dispatcher to Auto-Upload the Update Data to your Update Mirrors via FTP. This can be done at the Updater tab of Dispatcher.<br>
+<br>
+<br>
+<b>Only Auto-Upload Files Not Previously Uploaded</b><br>
+This effects the Auto-Upload to Mirrors via FTP feature. When enabled, this feature tracks which files were uploaded to your Update Mirrors, and does not re-upload files that were uploaded last time (with the same checksum).<br>
+<br>
+This feature is off by default because it does not check if you deleted files from your Update Mirrors manually, which would cause Update Data to not exist and also not be uploaded again with this feature on. So inexperienced users who are still playing around should leave this feature off until they are comfortable letting Dispatcher handle their Update Mirrors.<br>
+<br>
+After you turn this feature on, should you wish to manually delete all Update Data files your Update Mirrors to clean out unused files, you can make Dispatcher one-time ignore its knowledge of previously uploaded Update Data by clicking "Upload Update Data Now" while holding Shift. Alternatively, just disable "Only Upload Files Not Previously Uploaded" right before Releasing, and re-enable it after uploading.<br>
+<br>
+<br>
+<b>Changing Mirrors After Release</b><br>
+You can add or remove mirrors at any time.<br>
+<br>
+When you change Mirrors, the change takes effect after you release the next version of your software. All changes in Updater settings go into effect after a successful update of your software.<br>
+<br>
+<br>
+<b>Refreshing Mirrors Before Updates</b><br>
+This is an advanced feature, which you should not need in most scenarios.<br>
+<br>
+If your list of mirrors must change before each update, such as to support Amazon CloudFront, you can supply a MirrorList URL. Once supplied, the Updater will always download the latest list of mirrors from your MirrorList URL before each update, and contact only those Update Mirrors to check for updates. To enable this feature, use the -setmirrorlisturl parameter (ideally when you are first installing your software on a user's PCs) to set the URL of your mirrorlist.ini. See <a href="commandline.html">Command Line</a>.<br>
+<br>
+Here's an example of a mirrorlist.ini (the URL of which you must make public and supply with the commandline above):<br>
+<i>
+[Mirrors]<br>
+0=http://example.com/Up/MySoft<br>
+1=ftp://mirror2.example.com/Up/MySoftware<br>
+2=http://mirror3.example.com/Updates/MySoftware<br>
+</i>
+<br>
+Do not use trailing slashes in the URLs.
+
+</span></body>

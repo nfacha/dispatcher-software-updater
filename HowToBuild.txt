@@ -1,0 +1,58 @@
+>>How to Build<<
+
+>You will need:
+	-NSIS 2.46 (for Compiler.exe and Updater.exe)
+		Free! http://nsis.sourceforge.net/Download
+	-NSIS Plugins (included! See below)
+	-MMF2 Developer - Build 257 (for the UI: Dispatcher.exe, DispatcherReleaseLog.exe)
+		Not Free! http://www.clickteam.com/website/world/multimedia-fusion-2-developer
+	-MMF2 Extensions (not included)
+
+
+> Overview 
+	Updater.exe
+		The exact binary that users of Dispatcher bundle with all their apps.
+	Compiler.exe
+		This does 90% of the update/patch/release process, as well as having random utility functions that the UI (Dispatcher.exe) uses
+	Dispatcher.exe
+		The UI. About 10% of the update/patch/release process is also implemented in here.
+	DispatcherReleaseLog.exe
+		This is the UI Log that pops up during the update/patch/release process.
+
+
+>Compiler / Updater
+
+	[NSIS Plugins]
+		Extract \Source\Updater\Plugins.rar into your installed NSIS (\NSIS\Plugins)
+
+	To compile these, right click their .nsi file, and click compile. They are:
+		- \Source\Compiler\compiler.nsi
+		- \Source\Updater\Updater.nsi
+
+	You will need to have extracted the plugins.
+
+	You can also build both of them at once by using the MakeEdition_*.bat in \Source\
+
+	Note that MakeEdition switches which edition of the compiler/updater is built by changing the string inside of the Dispatcher.dat file that lives next to Dispatcher.exe. While you can change this file at any time to make Dispatcher.exe behave like any of the editions, the compiler.nsi and updater.nsi actually compile differently depending on the contents of this file.
+
+	After compilation, the executables end up in \Source\Data\
+
+
+
+>The UI (Dispatcher.exe and DispatcherReleaseLog.exe)
+	You will need to buy MMF2 Developer to actually compile these, but you might be able to use the trial to view the source files, which are:
+		- \Source\Dispatcher.mfa
+		- \Source\DispatcherReleaseLog.mfa
+
+	[MMF2 Extensions]
+	It's a bit tricky finding these, and due to their licenses, they can't just be re-distributed. MMF2 will tell you exactly which ones you are missing when you open any .mfa file.
+	You probably want to get all the "Bonus Packs" from: 
+		http://www.clickteam.com/website/world/download-centre-mmf2
+	Also try these links: 
+		http://community.clickteam.com/threads/65019-ExtensionView-by-Jaffob
+		http://community.clickteam.com/forums/205-Released-Extensions
+		http://dark-wire.com/store/extlist.php
+		http://www.andersriggelsen.dk/mmf2_extensions.php
+
+	After opening the Dispatcher.mfa source successfully, you can build from the File menu. Just overwrite the Dispatcher.exe in \Source\
+

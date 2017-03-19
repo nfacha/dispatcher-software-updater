@@ -1,0 +1,23 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>Update Excludes</big></big>
+<br><br>
+
+Update Excludes let you exclude certain files/folders from being changed or deleted by updates. They are still released initially, and updates will still create these files if they don't exist.<br><br>
+<br>
+Usually, all files that changed from an old version to a new will be replaced with their new newer forms when the Updater updates.<br>
+<br>
+This may not be desirable at times. For example, if your software comes with a default Settings.ini. An old version's Settings.ini had a default font size of 10, while you've since changed the default to 11 in the new version. However, your software stores user preferences right in that same ini file. Thus, if a user of the old version has changed his font size to 13, s/he would be unhappy if his Settings.ini were "updated" to the new default, changing his font size to 11.<br>
+<br>
+Note that files in the Update Excludes will be be created initially, either when releasing in full, or during updates. If, as in the above example, you didn't have a default Settings.ini in the old version of your software, but you do now: you don't want your default Settings.ini to overwrite a user's self-made Settings.ini. However, if no Settings.ini file was made by the user yet, s/he might as well get the same benefit you've provided users who initially installed your new version with your sample Settings.ini file, so the new Settings.ini file is put into place by the Updater.<br>
+<br>
+<br>
+Any Update Excludes you set are looked for anywhere in the full relative path of any file or folder that would usually be updated. If it's found, that file or folder will not be modified by updates on the user's PC once the it exists.<br>
+<br>
+Examples:<br>
+ Data\Mods\example.ini (excludes just that file)<br>
+ Data\Mods (excludes everything in the Mods folder)<br>
+ .svn (Exlcude all paths containing .svn)<br> 
+
+</span></body>

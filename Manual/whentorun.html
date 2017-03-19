@@ -1,0 +1,58 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>When to run your Updater</big></big>
+<br><br>
+
+You can run the updater at different times, depending on your needs. An application might just want the updater to be run manually by the user. Or maybe have the Updater quietly check for updates (while your application is running), only showing itself to the user if there is an update. An online game, on the other hand, might want the Updater to be run before the online game, to ensure the user is using the latest version available.<br>
+<br>
+All these scenarios are simple to accomplish with Puchisoft Dispatcher. Here's how:<br>
+
+<br><br>
+<big><b>Run Updater From My Software (Application Style)</big></b><br>
+In the Run/Close tab of Dispatcher, enter the Relative Program Path of your software's exe. Also configure the "EXE Name" to make sure your software is closed before updates are applied. Then check to "Run My Software" "After Successful Updates".<br>
+<br>
+There are two ways that Updaters can be run by your software: automatically, or by the choice of the user.<br>
+<br>
+<b>Manual Checking</b><br>
+An example of the user choosing the run an Updater is the ability to "Check for Updates...", which can be found in the Help menu of Firefox* (as well as Dispatcher).<br>
+To accomplish this: add such an option to your software, and have it execute the Updater.exe with the parameter "-check". The Updater is always located in the root of your software's install directory (example: C:\Program Files\MySoftware\Updater.exe).<br>
+The -check parameter is there to bypass the "Minimum Interval Between Updates" feature, if used. Since your user just clicked "Check for Updates...", s/he probably does not want to see "Not checking for updates, because it hasn't been X days yet."<br>
+<br>
+<b>Automatic Quiet Checking</b><br>
+An example of an application checking quietly for updates is uTorrent*. Once in a while, it will ask you if you want to update. This is done without interrupting the application, and at the user's discretion.<br>
+<br>
+To automatically check for updates, run the Updater.exe with the "-quiet" parameter, when desired. This causes the Updater to not show itself, unless there is an update available. If there is no update, the Updater will just close itself. Once an update is found, the user is asked if he wishes to update your software.<br>
+
+<br><br>
+<big><b>Run Updater Before My Software (Online Game Style A)</big></b><br>
+In the Run/Close tab of Dispatcher, enter the Relative Program Path of your software's exe, and any Parameters you might want it to pass. Also configure the "EXE Name" to make sure your software is closed before updates are applied. <br>
+<br>
+By passing a certain parameter, your software can tell if it was started directly by user double-clicking your exe, or if it was started by the Updater. You could use this to discourage users from bypassing the Updater, if them using the latest version is crucial to your software. This was done by games such as Tribes 2*.<br>
+<br>
+Now check when you want the Updater to run your software. You want it run "After Successful Updates" and "After No Updates Found". Whether you also want your software to be started if there was an error (perhaps if your Update Mirrors were down), is up to you.<br>
+<br>
+In the Installer configuration, just make the Installer start the Updater.exe rather than your program, whenever the user clicks the shortcut to your software. To do this, click "Configure Installer" on the Release tab of Dispatcher. Then set the "Relative Program Path" to Updater.exe, and click OK.<br>
+<br>
+When the Updater is done, it will start your program.<br>
+
+<br><br>
+<big><b>Run Updater in Between My Software (Online Game Style B)</big></b><br>
+This is also sometimes done by games, such as WoW*. This is how it plays out:<br>
+1) User click the shortcut to your software<br>
+2) Your software is run<br>
+3) The user logs into the game account with your software<br>
+4) The Updater is run (and the software waits until it terminates)<br>
+5) The Updater checks for updates, applies them if there are any<br>
+6) The Updater just closes if there were no updates (to allow your software to continue where it left off), or runs your software anew when there was an update (since your software must have been closed, for it to be updated)<br>
+<br>
+First, start by following the instructions of "Run Updater Before My Software (Online Game Style A)" above, except for the part about configuring the Installer to run the Updater before your software. You want the Installer to run your software directly, after all.<br>
+<br>
+Program your software to run the Updater.exe when you desire it to be run, and Wait for it to terminate. How to do this depends on your programming language.<br>
+<br>
+In the Run/Close tab of Dispatcher, check to "Run My Software" only "After Successful Updates" and select "Auto-Close Updater" "After No Updates Found". So if your application had to be closed due to being updated, it will be started again. If it didn't get updated, the Updater will merely close itself, allowing your software to continue doing whatever it was doing.<br>
+
+<br><br><br>
+* Firefox, uTorrent, WoW and Tribes 2 are copyright by their respective owners, and have no association with Puchisoft, nor endorse Puchisoft, nor is it implied that they use Puchisoft software.
+
+</span></body>

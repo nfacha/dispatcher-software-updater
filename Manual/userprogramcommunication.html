@@ -1,0 +1,38 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>User Program Communication</big></big>
+<br><br>
+
+Your Updater.exe does not have to keep all its information to itself. Your Software can make use of what the Updater knows.<br>
+<br>
+To do this, first understand that the Updater.exe keeps some data in the file Updater.dat, which always resides right next to the Updater.exe, in your program's root folder.
+ The Updater.dat is really just an INI file.<br> 
+<br> 
+<b>You should never change or delete Updater.dat if you want the Updater.exe to continue to function.</b> However, feel free to read information from this file.<br>
+
+<br><br>
+<b><big>Have Your Software Know Whether a New Version is Available</big></b><br>
+Do you want your Software to tell your users whether there is a new version? No problem.<br>
+<br>
+If the Updater has checked for a new version, found one, but has not updated to it yet, the following group will exist inside your project's Data INI (it will also exists in the Updater.dat INI, but only if the Updater.exe was run with Admin rights/was allowed to write to its own folder) on your users' PCs:<br>
+<i>
+[UpdateAvailable]<br>
+UpdateAvailable=1<br>
+NewVersionName=v3.4a<br>
+</i>
+<br>
+No part of this group will exist if: a) There is no new version available, or b) If the Updater didn't check for one.<br>
+<br>
+If you want the Updater to silently check for a new version, but only write the result to INI, run Updater.exe with the "-silentcheckonly" parameter. Note that the above group is always written if a new version is found. This parameter just makes the Updater check without actually asking the user to update.<br>
+<br>
+To implement this properly, you should run the Updater with the above parameter, wait for it to terminate, and then check if UpdateAvailable=1. If it's anything else (like ""), there is no update available. Then your application can ask if the user wants to update to the new version. If he does, run the Updater.exe with the -update parameter, so the user will be updated without further questioning.
+<br><br>
+<b>Where is this Data INI?</b><br>
+It's located at: <i>USER\AppData\PuchisoftDispatcher\PROJECTNAME_PROJECTGID.data</i><br>
+For example, on a Windows 7 PC, GetIt's Data INI could be located at: <br><i>C:\Users\User\Appdata\Roaming\PuchisoftDispatcher\GetIt_3DBC877B-D65B-47BC-929D-822080DA02DE.data</i><br>
+<br>
+Your Project's GID will never change. It can be found either by opening the folder above after testing your Updater on your PC, or by opening your Project's .dispatch file in Notepad, and looking at the [Main] GID entry.<br>
+Most programming languages have a way to retrieve the current user's AppData folder. In NSIS it's $APPDATA, for example.<br>
+
+</span></body>

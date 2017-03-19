@@ -1,0 +1,37 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>Patch Mode Vs. Sync Mode</big></big>
+<br><br>
+
+Patch Mode updates your users via patch files, which are the compressed binary difference between the old and new version's files (and directory structure).<br>
+Sync mode downloads changed or new files in their entirety, with optional compression.<br>
+<br>
+For more information, see <a href="../../dispatcher_howitworks.html">How it Works</a>.<br>
+
+
+<br><br>
+<big><b>Patch Mode</big></b><br>
+When you release an update, as many patches as there are old versions are generated to your <a href="updatefolder.html">Update Data Folder</a>. 
+When a user of an old version tries to update, only one patch file is downloaded, containing only the changes needed to update this specific old version to the newest.<br>
+<br>
+To make generating patches possible, you must retain all old versions of your software that you wish to continue creating direct patches for, without alteration.<br>
+<br>
+By using patches in this way, Patch Mode saves you the most bandwidth, also giving your users the benefit of having to download considerably less than other methods of updating.<br>
+<br>
+If you no longer wish to create patches directly to the new version from certain old versions, you can Retire them. Retired versions will be updated using a chain of patches, syncing, or a combination of the two. See <a href="versions.html">Versions</a> for more on this.<br>
+
+
+<br><br>
+<big><b>Sync Mode</big></b><br>
+When you release an update, all files are compressed (optionally) and moved to your <a href="updatefolder.html">Update Data Folder</a>. Then a snapshot is made, which is a text file list of all files with their checksums.<br>
+<br>
+When a user of an old version tries to update, the snapshot is downloaded, and then looked through. All files of the newest version's snapshot, which either do not exist or are different, are downloaded and extracted (if compressed). Once write-access of all files to be overwritten is checked, the old versions of these files are overwritten with the new. New files will be added, but unlike with Patch Mode, old files (that are no longer part of your Release) are not deleted.<br>
+<br>
+Since no patches are made, there is no need to retain copies of old versions. You can just overwrite files in a single folder for all versions, and then have Dispatcher release it. This is a benefit over Patch Mode.<br>
+
+<br><br>
+<big><b>Changing Update Modes</big></b><br>
+You may change update modes at any point during your project's life. A <a href="recovery.html">Full Recover</a> will be used in certain scenarios.
+
+</span></body>

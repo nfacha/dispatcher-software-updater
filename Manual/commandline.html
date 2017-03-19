@@ -1,0 +1,43 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>Command Line</big></big>
+<br><br>
+
+Dispatcher.exe and your Updater.exe both take optional command line parameters.<br>
+<br>
+The Updater's parameters tweak its behaviour, whereas Dispatcher's parameters are used for release automation.<br>
+
+<br><br>
+<big><b>Updater.exe</big></b><br>
+Parameters do not stack.<br>
+<br>
+<b>-quiet</b><br>No Updater window is shown unless an Update is found<br><br>
+<b>-silentcheckonly</b><br>No Updater window is shown. Updater solely makes note of whether there is a new version and quits. See <a href="userprogramcommunication.html" TARGET=CONTENT>User Program Communication</a><br><br>
+<b>-check</b><br>Bypasses the build-in feature to only check every X days<br><br>
+<b>-update</b><br>(implies -check) If there is an update, it will be applied without user confirmation<br><br>
+<b>-fullrecover</b><br>Triggers a <a href="recovery.html">Full Recover</a><br><br>
+<b>-setauth USERNAME PASSWORD</b><br>Updater silently saves USERNAME and PASSWORD for future web authentication purposes and quits. No update check occurs. See <a href="authentication.html">User Authentication</a><br><br>
+<b>-setcustomurlparam DATA</b><br>Updater silently saves DATA, which will then be passed via the 'custom' variable in the Stats Reporting URL on all subequent updates. No update check occurs. Pass without parameter (nor trailing space!) to reset. See <a href="advanced.html">Advanced</a>.<br><br>
+<b>-setmirrorlisturl http://example.com/Up/MySoft/mirrors.ini</b><br>Updater silently saves the MirrorList URL, which will from then on always be used to refresh the list of mirrors before each update check. Pass without parameter (nor trailing space!) to reset. See <a href="updatemirrors.html">Update Mirrors</a>.<br><br>
+<b>-inflate http://example.com/Up/MySoft/.zip</b><br>Downloads complete software from Mirror URL with Extension Mask. Will not work if project disabled File Recovery. So if your Mirror URL is "http://example.com/Up/MySoft" and your Extension Mask is ".zip" (default), then you can inflate your full software by putting just your Updater.exe into a new folder, and running it like so: "Updater.exe -inflate http://example.com/Up/MySoft/.zip"<br><br>
+
+<br><br>
+<big><b>Dispatcher.exe</big></b><br>
+Multiple parameters can and should be used.<br>
+<br>
+<b>/PROJECT"C:\MySoftware.dispatcher"</b><br>Opens Project "C:\MySoftware.dispatcher". This should be specified if any of the below parameters are used.<br><br>
+<b>/ADDVERSIONNAME"v1.4" /ADDVERSIONFOLDER"C:\MySoftware\v14"</b><br>Add Version "v1.4" with folder "C:\MySoftware\v14" to Opened Project. <b>NOTE</b>: Both of these parameters must always be included, if you want to add a version.<br><br>
+<b>/ACTION"ReleaseFull"</b><br>Release in Full and Release Update Data. Only one /ACTION parameter may be specified.<br><br>
+<b>/ACTION"ReleaseUpdates"</b><br>Release Update Data Only. Only one /ACTION parameter may be specified.<br><br>
+<b>/ACTION"SetModePatch"</b><br>Set Update Mode to Patch Mode. Only one /ACTION parameter may be specified.<br><br>
+<b>/ACTION"SetModeSync"</b><br>Set Update Mode to Sync Mode. Only one /ACTION parameter may be specified.<br><br>
+<b>/AUTOCLOSEONSUCCESS"1"</b><br>Auto-Closes Dispatcher after successfully releasing.<br><br>
+
+So an example of the full parameter for adding a version, and then releasing it via Updates is:<br>
+/PROJECT"C:\MySoftware.dispatcher" /ADDVERSIONNAME"v1.4" /ADDVERSIONFOLDER"C:\MySoftware\v14" /ACTION"ReleaseUpdates"
+<br>
+<br>
+Just specifying /PROJECT will just open the Project. Adding both VERSION parameters will open the project, add that version, and close Dispatcher. Adding the /ACTION parameters will open the project, add the version, release the project, and allow review. Add /AUTOCLOSEONSUCCESS"1" to only allow review if the release failed.
+
+</span></body>

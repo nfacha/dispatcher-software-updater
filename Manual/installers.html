@@ -1,0 +1,37 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>Installers</big></big>
+<br><br>
+
+If you don't already have a way of creating installers for your software, Dispatcher can create your installer. Note that if you wish to use other software, just configure it to take the <a href="releasefolder.html" TARGET=CONTENT>Full Release Folder</a> as the source.<br>
+<br>
+When you click "Release in Full, and Release Update Data" with "Create Installer" checked, Dispatcher will create an installer of your latest version plus an Updater.<br>
+<br>
+The Installer will be compiled to "My Documents\Dispatcher Projects\MySoftware\MySoftware_Setup.exe" by default (if your project is named MySoftware).<br>
+<br>
+To configure your installer, click "Configure Installer".<br>
+
+<br><br>
+<big><b>Installer Configuration</big></b><br>
+<br>
+<b>Installer Script</big></b><br>
+Dispatcher uses NSIS to create Installers. NSIS makes installers via a scripting language.<br>
+<br>
+To make things easy on you, Dispatcher comes with Presets (installer scripts made for you), which are then customized for your project, with options from this configuration screen.<br>
+<br>
+If you are familiar with NSIS scripting, you may click Edit to hand modify a Preset NSIS script, or select your own Custom script.<br>
+<br>
+<b>Shortcuts</big></b><br>
+Here you can set which shortcuts are created in the start menu. You can set your Program's Relative Path, whether to also place a shortcut on the Desktop, and whether to run it after the installer is done installing. You can also make a shortcut to your website URL in the Start Menu.<br>
+<br>
+<b>Misc</big></b><br>
+If you require your users to Agree to a license before installing, set the local path to the .txt file here. It will be included in the installer, and users will not be able to install your software without clicking Agree.<br>
+<br>
+The Start Menu Group is the group name your software will be under in the Start Menu.<br>
+<br>
+<b>Release</big></b><br>
+Installer Output Path is the local location that you wish the Installer to be compiled to.<br> Just like you can Auto-Upload Update Data to your Update Mirrors, you can also Auto-Upload your Installer to your website. Enter the FTP URL here, if desired.<br>
+
+
+</span></body>

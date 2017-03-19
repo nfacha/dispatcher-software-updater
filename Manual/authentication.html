@@ -1,0 +1,32 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>User Authentication</big></big>
+<br><br>
+
+If you want to ensure that only a whitelist of your paying customer may download updates to your software, you can use User Authentication. This is accomplished by using standard web authentication (<a href="http://en.wikipedia.org/wiki/Basic_access_authentication">Basic</a>, <a href="http://en.wikipedia.org/wiki/Digest_access_authentication">Digest</a>, so on) on your web server of choice.
+<br><br>
+<b><big>How it Works (Overview)</big></b><br>
+You will have to manually password protect the two sub-folders of your Update Mirror URL. This way, the Updater will be able to check whether there is an update without requiring user authentication. Once the user decides to download the update, the Updater will require authentication, since the actual content of your updates is all stored in the sub-folders of the Update Mirror URL.<br>
+<br>
+How to require authentication for a URL depends on the web server you (or your webhost) are/is running. In case of Apache, you will probably use .htaccess files. <a href="http://sniptools.com/vault/windows-apache-and-htaccess-authentication">Here's someone's tutorial of how to require authentication if you are running Apache on Windows</a>.<br>
+<br>
+You don't have to set up anything for the Updater to recognize that user authentication is required. If you don't inform the Updater of the user credentials that should be used ahead of time, the user will simply be asked to Login with Username/Password right after he chooses to apply an update. This uses the standard Windows dialog, which also allows the user to save his/her password.<br>
+<br>
+If you don't want the user to have to deal with this dialog, you can tell the Updater which user credentials to try. This way, you can ask the user for his User/Password or Registration Key yourself, and then inform the Updater. Note that if you want the User to only have a Registration Key and not a Username/Password, you should translate your Registration Key to a Username/Password for your web authentication, and then tell the Updater the resulting User/Pass combination. For example, if a user's Key was "9877-EAFF", you could tell the Updater that the Username is "9877" and the password is "EAFF". Note however, that usernames may have to be unique, so if this is not the case for the first part of your key, it might be better to use "9877-EAFF" as both the username and the password. How you transform your user's Keys is up to you, but you must tell the Updater (or your users) a username/password combination, because that is what web authentication uses.<br>
+<br>
+Dispatcher will not aid you in inserting your users into your web authentication whitelist, since the way this is done works differently for every web server. Ideally, consider writing a script where your customers automatically have CD Keys generated for them at the time of purchase, and have these CD-Keys converted to Username/Password combinations, and inserted into the whitelist of your web authentication.<br>
+<br>
+<b><big>Implementing</big></b><br>
+First, you need to set up web authentication for the "sync" and "patch" sub-folders of your Update Mirrors (see above). For example, if your Mirror URL is "http://example.com/Updates/MySoftware", you need to password protect "http://example.com/Updates/MySoftware/sync" and "http://example.com/Updates/MySoftware/patch". Do <b>not</b> password protect "http://example.com/Updates/MySoftware" itself, as this would prevent the Updater from even checking if a new version exists, and is not supported at the time of writing.<br>
+<br>
+That is all you have to do if you are OK with your users being prompted for a Username/Password (optionally saved by the user) every time they choose to update.<br>
+<br>
+If you want to supply the credentials to the Updater silently, you can do so using the <a href="commandline.html" TARGET=CONTENT>-setauth</a> parameter. The Updater will just take note of the Username and Password, and close without showing a window. This should be done first, before ever running the Updater in any other way which might invoke a GUI, to ensure that the user is not prompted for credentials, should an update be available.<br>
+<br>
+An example use case might be: The user runs your Installer, which sets up your software and runs it directly (not the Updater). Your software then asks the User for his Registration Key. Your software verifies this, and runs "Updater.exe -setauth REGKEY REGKEY", if the Reg Key is valid. Since this doesn't actually check for updates, you can then run "Updater.exe -quiet" to then quietly check if an update is available. Let's say there is. So the Updater appears, and asks the user if he wants to update. He does. The update then just works as usual, without needing to prompt the user for credentials, as the RegKey was silently used as both the username and password.<br>
+<br>
+If you decide to blacklist the user (aka. remove the user from the whitelist) later, the Updater will try to login to the web authentication, fail, and will then prompt the user for his login credentials.
+
+
+</span></body>

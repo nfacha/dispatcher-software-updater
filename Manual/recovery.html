@@ -1,0 +1,28 @@
+<body>
+<SPAN class=FieldSpan id=XYZ_0001 style="DISPLAY: inline-block; WIDTH: 700px">
+
+<big><big>File Recovery / Full Recover</big></big>
+<br><br>
+
+File Recovery is basically a fall-back to Sync Mode that Patch Mode turns to when a file to be patched was altered or deleted by the user. It is also used to update versions set to "Retired (Sync)". See <a href="patchvssync.html" TARGET=CONTENT>Patch vs. Sync Mode</a>.<br>
+<br>
+File Recovery can be disabled in the Release tab of Dispatcher. This is not recommended, unless it is not desirable that any file of your software may be downloaded whole.<br>
+
+<br><br>
+<big><b>File Recovery</big></b><br>
+File Recovery is used by Patch Mode when a certain file can't be patched using patch data. This will happen if the user modified a file of your software that you did not intend to be modified.<br>
+<br>
+Since patches are just binary differences between old versions and new, it is not possible to patch a file that was modified by the user.<br>
+<br>
+If this happens, the Updater will simply download the file whole (with optional compression), as it would in Sync Mode.<br>
+<br>
+<br><br>
+<big><b>Full Recover</big></b><br>
+A Full Recover is special case of Sync Mode that ignores whether or not there was an update. It will ensure that all files of the remote snapshot (see <a href="patchvssync.html" TARGET=CONTENT>Patch vs. Sync Mode</a>) exist locally with the same checksum. Any file that does not exist or that has a different checksum, will be replaced with the newest one from the Update Mirror.<br>
+<br>
+A Full Recover can be manually triggered by running the Updater with the -fullrecover parameter. Full Recovery can be used with Patch Mode, if File Recovery is allowed. It can always be used with Sync Mode.<br>
+<br>
+Sometimes, when required, a Full Recover is automatically executed. One example of such a case is when Update Modes were changed.<br>
+For example, if Sync Mode was used before, but Patch Mode is used now, there will not exist any patch data from those old versions to the newest version. So when the Updater encounters Patch Mode for the first time, having used Sync Mode previously, a Full Recover is triggered. All consecutive updates will then be done using Patches, as usual.<br>
+
+</span></body>

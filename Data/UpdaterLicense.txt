@@ -1,0 +1,16 @@
+This Updater program was created using Puchisoft Dispatcher. 
+Create Updaters for your own software. Visit: http://www.puchisoft.com
+
+
+This license applies to the Updater program:
+
+This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
+
+1) This Updater program was licensed to the distributer of this software or product.
+2) This Updater program may not be used with any product other than the one it was created for.
+3) You may only distribute Updater programs (created from Puchisoft Dispatcher), for use with your own software programs or products, if you own a license to the Edition of Puchisoft Update Deployer, which was used to create the Updater.
+4) This Updater sends information to the Licensee of the Updater program and/or to Puchisoft, Inc. - Only information about the product being updated and the Updater program itself is sent. Neither other information from your computer, nor any personal information is sent to Puchisoft, Inc.
+
+
+Puchisoft, Inc.
+http://www.puchisoft.com
